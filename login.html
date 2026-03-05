@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Cara Login</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Poppins, sans-serif;
+      }
+
+      /* Background Image */
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("img/banner/l1.png");
+
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Login Card */
+
+      .login-container {
+        background: white;
+        padding: 40px;
+        width: 350px;
+        border-radius: 12px;
+
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+        text-align: center;
+      }
+
+      .login-container h2 {
+        margin-bottom: 20px;
+        color: #088178;
+      }
+
+      /* Inputs */
+
+      .input-box {
+        margin-bottom: 15px;
+      }
+
+      .input-box input {
+        width: 100%;
+        padding: 12px;
+
+        border: 1px solid #ccc;
+        border-radius: 6px;
+
+        font-size: 14px;
+      }
+
+      /* Button */
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+
+        background: #088178;
+        border: none;
+
+        color: white;
+        font-size: 16px;
+
+        border-radius: 6px;
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      .login-btn:hover {
+        background: #066b63;
+      }
+
+      /* Register Link */
+
+      .register {
+        margin-top: 15px;
+        font-size: 14px;
+      }
+
+      .register a {
+        color: #088178;
+        text-decoration: none;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+
+      <form id="loginForm">
+        <div class="input-box">
+          <input type="email" id="email" placeholder="Email Address" required />
+        </div>
+
+        <div class="input-box">
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+
+        <button class="login-btn">Login</button>
+
+        <div class="register">
+          Don't have an account? <a href="signup.html">Register</a>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let email = document.getElementById("email").value;
+          let password = document.getElementById("password").value;
+
+          let user = JSON.parse(localStorage.getItem("user"));
+
+          if (user && email === user.email && password === user.password) {
+            alert("Login Successful");
+
+            localStorage.setItem("loggedIn", true);
+
+            window.location.href = "index.html";
+          } else {
+            alert("Invalid Email or Password");
+          }
+        });
+    </script>
+  </body>
+</html>
