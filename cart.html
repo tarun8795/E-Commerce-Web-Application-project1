@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ecommerce Website</title>
+    <title>Cara</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -21,7 +21,7 @@
           <a href="#" id="close"><i class="fa fa-close"></i></a>
           <li><a href="index.html">Home</a></li>
           <li><a href="shop.html">Shop</a></li>
-          <li><a href="blog.html">Blog</a></li>
+
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li id="lg-bag">
@@ -41,7 +41,7 @@
 
     <section id="page-header" class="about-header">
       <h2>#CART</h2>
-      <p>Enter your coupon code...</p>
+      <p>Unlock exclusive savings with your coupon code</p>
       <a href="#" class="to-top">
         <i class="fas fa-chevron-up"></i>
       </a>
@@ -123,6 +123,7 @@
           </tr>
         </table>
       </div>
+      <button class="normal" onclick="placeOrder()">Checkout</button>
     </div>
 
     <section id="form-details">
@@ -173,7 +174,10 @@
     <section id="newsletter" class="section-p1 section-m1">
       <div class="newstext">
         <h4>Sign Up for newsletter</h4>
-        <p>Lorem ipsum dolor sit amet <span>consectetur</span>.</p>
+        <p>
+          Discover high-quality products crafted to match your
+          <span>style and needs</span>.
+        </p>
       </div>
       <div class="form">
         <input type="text" placeholder="your email address" />
@@ -186,14 +190,15 @@
         <img class="logo" src="img/logo.png" alt="" />
         <h4>Contact</h4>
         <p>
-          <strong><i class="fa fa-home"></i></strong> Lorem ipsum dolor sit
+          <strong><i class="fa fa-home"></i></strong>22 Residency Road,
+          Bengaluru,India
         </p>
         <p>
-          <strong><i class="fa fa-phone"></i></strong> 13569876540
+          <strong><i class="fa fa-phone"></i></strong> +91 99887 77665
         </p>
         <p>
           <strong><i class="fa fa-hourglass" aria-hidden="true"></i></strong>
-          9:00 AM - 6:00 PM
+          Mon – Fri: 10:00 AM – 7:00 PM
         </p>
         <div class="follow">
           <h4>Follow Us</h4>
@@ -241,7 +246,31 @@
         <p>c 2022, With ❤ Bhandary , Ecommerce Website Template</p>
       </div>
     </footer>
+    <script>
+      async function placeOrder() {
+        const token = localStorage.getItem("token");
+        if (!token) return (window.location.href = "login.html");
 
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+        const res = await fetch("/api/orders", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({ items: cart, total }),
+        });
+
+        if (res.ok) {
+          alert("Order placed!");
+          localStorage.removeItem("cart");
+          window.location.href = "index.html";
+        }
+      }
+    </script>
+    <script src="script.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

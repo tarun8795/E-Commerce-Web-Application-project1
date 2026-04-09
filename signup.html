@@ -12,6 +12,10 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
+        background-image: url("img/banner/signup.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
       }
 
       .container {
@@ -82,24 +86,29 @@
     <script>
       document
         .getElementById("signupForm")
-        .addEventListener("submit", function (e) {
+        .addEventListener("submit", async function (e) {
           e.preventDefault();
 
-          let name = document.getElementById("name").value;
-          let email = document.getElementById("email").value;
-          let password = document.getElementById("password").value;
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
 
-          let user = {
-            name: name,
-            email: email,
-            password: password,
-          };
+          const res = await fetch("http://localhost:5000/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password }),
+          });
 
-          localStorage.setItem("user", JSON.stringify(user));
+          const data = await res.json();
 
-          alert("Registration Successful");
-
-          window.location.href = "login.html";
+          if (res.ok) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            alert("Registration Successful!");
+            window.location.href = "login.html";
+          } else {
+            alert(data.msg);
+          }
         });
     </script>
   </body>
