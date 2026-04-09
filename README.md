@@ -139,7 +139,7 @@ Make sure to keep your `.env` file secure and never upload it to GitHub.
 ## 👨‍💻 Author
 
 * **Tarun**
-* GitHub: https://github.com/your-username
+* GitHub: https://github.com/E-Commerce-Web-Application-project1
 
 ---
 
