@@ -41,69 +41,61 @@
 
     <section id="prodetails" class="sectio-p1">
       <div class="single-pro-image">
-        <img src="img/products/f1.jpg" width="100%" id="MainImg" alt="" />
+        <img src="" id="MainImg" alt="" />
 
         <div class="small-img-group">
           <div class="small-img-col">
             <img
               src="img/products/f1.jpg"
-              width="100%"
               class="small-img"
-              alt=""
+              data-id="69d6a76cecb4e87efa21b4c8"
             />
           </div>
           <div class="small-img-col">
             <img
               src="img/products/f2.jpg"
-              width="100%"
               class="small-img"
-              alt=""
+              data-id="69d6a76cecb4e87efa21b4c9"
             />
           </div>
           <div class="small-img-col">
             <img
               src="img/products/f3.jpg"
-              width="100%"
               class="small-img"
-              alt=""
+              data-id="69d6a76cecb4e87efa21b4ca"
             />
           </div>
           <div class="small-img-col">
             <img
               src="img/products/f4.jpg"
-              width="100%"
               class="small-img"
-              alt=""
+              data-id="69d6a76cecb4e87efa21b4cb"
             />
           </div>
         </div>
       </div>
 
       <div class="single-pro-details">
-        <h6>Lorem</h6>
-        <h4>Lorem, ipsum dolor.</h4>
-        <h2>$139</h2>
-        <select>
-          <option>select Size</option>
+        <h6 id="product-brand"></h6>
+        <h4 id="product-name"></h4>
+        <h2 id="product-price"></h2>
+
+        <select id="product-size">
+          <option>Select Size</option>
           <option>S</option>
           <option>M</option>
           <option>L</option>
           <option>XL</option>
-          <option>XXL</option>
         </select>
-        <input type="number" value="1" />
-        <button class="normal">Add to cart</button>
+
+        <input type="number" id="product-qty" value="1" min="1" />
+
+        <button class="normal" id="add-to-cart-btn">Add to Cart</button>
+
         <h4>Product Details</h4>
-        <span
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga quis
-          molestiae ullam distinctio minus quisquam cupiditate vero in
-          laboriosam optio. ipsum dolor sit amet consectetur adipisicing elit.
-          Magni quo a dignissimos quasi, incidunt quae. Omnis sapiente beatae
-          totam asperiores nemo laudantium doloribus autem culpa enim. ipsum
-          dolor sit, amet consectetur adipisicing elit. Maiores non tempore
-          tempora laborum accusantium fuga, est et laboriosam. Et,
-          tempore.</span
-        >
+        <span id="product-desc">
+          Premium quality shirt with stylish design and comfort.
+        </span>
       </div>
     </section>
 
@@ -124,7 +116,12 @@
             </div>
             <h4>$78</h4>
           </div>
-          <a href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+          <a
+            href="javascript:void(0)"
+            onclick="addToCart('Cotton Shirt', 78, 'img/products/n1.jpg')"
+          >
+            <i class="fa fa-shopping-cart"></i>
+          </a>
         </div>
         <div class="pro">
           <img src="img/products/n2.jpg" alt="" />
@@ -140,7 +137,12 @@
             </div>
             <h4>$78</h4>
           </div>
-          <a href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+          <a
+            href="javascript:void(0)"
+            onclick="addToCart('Cotton Shirt', 78, 'img/products/n2.jpg')"
+          >
+            <i class="fa fa-shopping-cart"></i>
+          </a>
         </div>
         <div class="pro">
           <img src="img/products/n3.jpg" alt="" />
@@ -156,7 +158,12 @@
             </div>
             <h4>$78</h4>
           </div>
-          <a href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+          <a
+            href="javascript:void(0)"
+            onclick="addToCart('Cotton Shirt', 78, 'img/products/n3.jpg')"
+          >
+            <i class="fa fa-shopping-cart"></i>
+          </a>
         </div>
         <div class="pro">
           <img src="img/products/n4.jpg" alt="" />
@@ -172,7 +179,12 @@
             </div>
             <h4>$78</h4>
           </div>
-          <a href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+          <a
+            href="javascript:void(0)"
+            onclick="addToCart('Cotton Shirt', 78, 'img/products/n4.jpg')"
+          >
+            <i class="fa fa-shopping-cart"></i>
+          </a>
         </div>
       </div>
     </section>
@@ -241,24 +253,6 @@
         <p>c 2022, With ❤ Bhandary , Ecommerce Website Template</p>
       </div>
     </footer>
-
-    <script>
-      var MainImg = document.getElementById("MainImg");
-      var smallimg = document.getElementsByClassName("small-img");
-
-      smallimg[0].onclick = function () {
-        MainImg.src = smallimg[0].src;
-      };
-      smallimg[1].onclick = function () {
-        MainImg.src = smallimg[1].src;
-      };
-      smallimg[2].onclick = function () {
-        MainImg.src = smallimg[2].src;
-      };
-      smallimg[3].onclick = function () {
-        MainImg.src = smallimg[3].src;
-      };
-    </script>
 
     <script src="script.js"></script>
   </body>

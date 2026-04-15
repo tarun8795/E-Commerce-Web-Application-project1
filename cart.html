@@ -47,82 +47,24 @@
       </a>
     </section>
 
-    <!-- <section id="contact-details" class="section-p1">
-        <div class="details">
-            <h2>Your Cart is Empty</h2>
-    </section> -->
-
     <!-- cart items details-->
     <div class="small-container">
-      <table>
-        <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="img/products/f1.jpg" alt="Tshirt" />
-              <div>
-                <p>Orange Printed Tshirt</p>
-                <small>Price: $78.00</small>
-                <br />
-                <a href="#">Remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" /></td>
-          <td>$78.00</td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="img/products/f3.jpg" alt="Tshirt" />
-              <div>
-                <p>Orange Printed Tshirt</p>
-                <small>Price: $78.00</small>
-                <br />
-                <a href="#">Remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" /></td>
-          <td>$78.00</td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="img/products/f5.jpg" alt="Tshirt" />
-              <div>
-                <p>Orange Printed Tshirt</p>
-                <small>Price: $78.00</small>
-                <br />
-                <a href="#">Remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" /></td>
-          <td>$78.00</td>
-        </tr>
+      <table id="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
       </table>
 
       <div class="total-price">
-        <table>
-          <tr>
-            <td>Subtotal</td>
-            <td>$234.00</td>
-          </tr>
-          <tr>
-            <td>Tax</td>
-            <td>$35.00</td>
-          </tr>
-          <tr>
-            <td>Total</td>
-            <td>$269.00</td>
-          </tr>
-        </table>
+        <table id="total-table"></table>
       </div>
+
       <button class="normal" onclick="placeOrder()">Checkout</button>
     </div>
 
@@ -243,18 +185,87 @@
       </div>
 
       <div class="copyright">
-        <p>c 2022, With ❤ Bhandary , Ecommerce Website Template</p>
+        <p>c 2026, With ❤, Ecommerce Website</p>
       </div>
     </footer>
     <script>
+      function loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const tbody = document.querySelector("#cart-table tbody");
+
+        if (!tbody) {
+          console.log("Table body not found!");
+          return;
+        }
+
+        tbody.innerHTML = "";
+
+        if (cart.length === 0) {
+          document.querySelector(".small-container").innerHTML =
+            '<h2 style="text-align:center;padding:40px">Your cart is empty</h2>';
+          return;
+        }
+
+        let subtotal = 0;
+
+        cart.forEach((item, i) => {
+          subtotal += item.price * item.qty;
+
+          tbody.innerHTML += `
+        <tr>
+          <td>
+            <div class="cart-info">
+              <img src="${item.image}" alt="${item.name}" />
+              <div>
+                <p>${item.name}</p>
+                <small>Price: $${item.price}</small><br>
+                <a href="#" onclick="removeItem(${i})">Remove</a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <input type="number" value="${item.qty}" min="1"
+              onchange="updateQty(${i}, this.value)" />
+          </td>
+          <td>$${item.price * item.qty}</td>
+        </tr>
+      `;
+        });
+
+        const tax = Math.round(subtotal * 0.15);
+        const total = subtotal + tax;
+
+        document.getElementById("total-table").innerHTML = `
+      <tr><td>Subtotal</td><td>$${subtotal}</td></tr>
+      <tr><td>Tax (15%)</td><td>$${tax}</td></tr>
+      <tr><td>Total</td><td>$${total}</td></tr>
+    `;
+      }
+
+      function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+      }
+
+      function updateQty(index, qty) {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        cart[index].qty = parseInt(qty);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+      }
+
       async function placeOrder() {
         const token = localStorage.getItem("token");
         if (!token) return (window.location.href = "login.html");
 
         const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        if (cart.length === 0) return alert("Your cart is empty!");
+
         const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
 
-        const res = await fetch("/api/orders", {
+        const res = await fetch("http://localhost:5000/api/orders", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -264,13 +275,53 @@
         });
 
         if (res.ok) {
-          alert("Order placed!");
+          alert("Order placed successfully!");
           localStorage.removeItem("cart");
           window.location.href = "index.html";
+        } else {
+          const data = await res.json();
+          alert(data.msg || "Something went wrong");
         }
       }
+
+      loadCart();
+      async function placeOrder() {
+        const token = localStorage.getItem("token");
+        if (!token) return (window.location.href = "login.html");
+
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        if (cart.length === 0) return alert("Your cart is empty!");
+
+        const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+        // 🔥 STEP 1: FAKE PAYMENT
+        alert("Processing payment...");
+
+        setTimeout(async () => {
+          alert("Payment Successful 🎉");
+
+          // 🔥 STEP 2: SAVE ORDER
+          const res = await fetch("http://localhost:5000/api/orders", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+            body: JSON.stringify({ items: cart, total }),
+          });
+
+          if (res.ok) {
+            localStorage.removeItem("cart");
+
+            window.location.href = "success.html";
+          } else {
+            const data = await res.json();
+            alert(data.msg || "Error saving order");
+          }
+        }, 1500);
+      }
     </script>
-    <script src="script.js"></script>
+
     <script src="script.js"></script>
   </body>
 </html>

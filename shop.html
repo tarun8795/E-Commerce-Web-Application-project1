@@ -50,12 +50,6 @@
       <div id="product-container" class="pro-container"></div>
     </section>
 
-    <section id="pagination" class="section-p1">
-      <a href="#">1</a>
-      <a href="#">2</a>
-      <a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-    </section>
-
     <section id="newsletter" class="section-p1 section-m1">
       <div class="newstext">
         <h4>Sign up for newsletters</h4>
@@ -123,37 +117,7 @@
         <p>c 2022, With ❤ Bhandary , Ecommerce Website Template</p>
       </div>
     </footer>
-    <script>
-      async function loadProducts() {
-        try {
-          const res = await fetch("http://localhost:5000/api/products");
-          const products = await res.json();
 
-          const container = document.getElementById("product-container");
-
-          container.innerHTML = products
-            .map(
-              (p) => `
-      <div class="pro" onclick="window.location.href='sproduct.html?id=${p._id}'">
-        <img src="${p.image}" alt="${p.name}">
-        <div class="des">
-          <span>${p.brand}</span>
-          <h5>${p.name}</h5>
-          <div class="star">⭐⭐⭐⭐⭐</div>
-          <h4>$${p.price}</h4>
-        </div>
-        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-      </div>
-    `,
-            )
-            .join("");
-        } catch (err) {
-          console.error("Error loading products:", err);
-        }
-      }
-
-      loadProducts();
-    </script>
     <script src="script.js"></script>
   </body>
 </html>
