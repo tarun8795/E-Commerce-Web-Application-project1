@@ -1,41 +1,77 @@
-# 🛒 E-Commerce Web Application
+# 🛒 Full-Stack E-Commerce Web Application
 
-A full-stack E-Commerce Web Application where users can browse products, register, login, add items to cart, and place orders.
+A modern full-stack E-Commerce web application where users can browse products, view details, add items to cart, simulate payments, and place orders. Built using a complete MERN-style architecture with authentication and database integration.
 
 ---
 
 ## 🚀 Features
 
-* 👤 User Registration & Login (JWT Authentication)
-* 🛍️ Browse Products
-* 🛒 Add to Cart
-* 📦 Place Orders
-* 📧 Contact Form (Email Integration)
-* 🔐 Secure Authentication with JSON Web Tokens
-* 🖼️ Image Upload Support
+### 👤 Authentication
+
+* User Registration & Login
+* JWT-based Authentication
+* Protected Routes
+
+### 🛍️ Product Management
+
+* Dynamic product fetching from backend
+* Product detail page (sproduct)
+* Image handling from server
+
+### 🛒 Cart System
+
+* Add to Cart functionality
+* Quantity management
+* Cart stored in localStorage
+* Dynamic total price calculation
+
+### 💳 Checkout & Payment
+
+* Simulated payment system (for demo/project use)
+* Order confirmation page
+* Cart cleared after successful checkout
+
+### 📦 Order Management
+
+* Orders saved to MongoDB
+* Backend API for order creation
+* Order data includes items, quantity, and total amount
+
+### 📧 Contact System
+
+* Contact form with email integration using Nodemailer
+
+### 🖼️ Media Handling
+
+* Image upload using Multer
+* Static file serving from backend
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend:
+### Frontend
 
 * HTML
 * CSS
-* JavaScript
+* JavaScript (Vanilla)
 
-### Backend:
+### Backend
 
 * Node.js
 * Express.js
-* MongoDB (Atlas)
+
+### Database
+
+* MongoDB Atlas
 * Mongoose
 
-### Other Tools:
+### Other Tools & Libraries
 
-* JWT (Authentication)
-* Nodemailer (Email)
-* Multer (File Upload)
+* JSON Web Token (JWT) – Authentication
+* Multer – File Upload
+* Nodemailer – Email Service
+* REST APIs – Client-Server Communication
 
 ---
 
@@ -48,17 +84,17 @@ webtech/
 │   ├── models/
 │   ├── routes/
 │   ├── uploads/
-│   ├── server.js
-│   ├── package.json
+│   └── server.js
 │
-├── img/
 ├── index.html
+├── shop.html
+├── sproduct.html
+├── cart.html
 ├── login.html
 ├── signup.html
-├── shop.html
-├── cart.html
+├── script.js
 ├── style.css
-└── script.js
+└── success.html
 ```
 
 ---
@@ -68,35 +104,32 @@ webtech/
 ### 1️⃣ Clone the repository
 
 ```
-git clone https://github.com/your-username/your-repo-name.git
+git clone(https://github.com/tarun8795/E-Commerce-Web-Application-project1)
+cd E-Commerce-Web-Application-project1
 ```
 
-### 2️⃣ Go to project folder
+### 2️⃣ Install backend dependencies
 
 ```
-cd webtech/server
-```
-
-### 3️⃣ Install dependencies
-
-```
+cd server
 npm install
 ```
 
-### 4️⃣ Create `.env` file
+### 3️⃣ Configure environment variables
 
-Add the following:
+Create a `.env` file inside `/server`:
 
 ```
 PORT=5000
 MONGO_URI=your_mongodb_connection
 JWT_SECRET=your_secret_key
-JWT_EXPIRES=1d
 EMAIL_USER=your_email
-EMAIL_PASS=your_app_password
+EMAIL_PASS=your_email_password
 ```
 
-### 5️⃣ Run the server
+---
+
+### 4️⃣ Run the server
 
 ```
 node server.js
@@ -104,45 +137,49 @@ node server.js
 
 ---
 
-## 🌐 Usage
+### 5️⃣ Open frontend
 
-* Open frontend files (`index.html`) in browser
-* Backend runs on:
+Open `index.html` in your browser
+
+---
+
+## 🔄 Application Flow
 
 ```
-http://localhost:5000
+User → Browse Products → Add to Cart → Checkout → 
+Simulated Payment → Order Saved in MongoDB → Success Page
 ```
 
 ---
 
-## 🔐 Environment Variables
+## 🔐 Security Notes
 
-Make sure to keep your `.env` file secure and never upload it to GitHub.
-
----
-
-## 📸 Screenshots
-
-(Add your project screenshots here for better presentation)
+* Environment variables are stored securely using `.env`
+* JWT used for authentication
+* Sensitive data is not exposed to frontend
 
 ---
 
-## 🚀 Future Improvements
+## 📌 Future Enhancements
 
-* 💳 Payment Gateway Integration
-* 📱 Responsive Design Enhancements
-* 🛠️ Admin Dashboard
-* ⭐ Product Reviews & Ratings
-
----
-
-## 👨‍💻 Author
-
-* **Tarun**
-* GitHub: https://github.com/E-Commerce-Web-Application-project1
+* Razorpay/Stripe real payment integration
+* Order history page
+* Admin dashboard
+* Product filtering & search
+* Responsive mobile design improvements
 
 ---
 
-## ⭐ If you like this project
+## 🧠 Learning Outcomes
 
-Give it a ⭐ on GitHub!
+* Full-stack development using Node.js & MongoDB
+* REST API design and integration
+* Authentication using JWT
+* Cart and order management logic
+* Real-world project architecture
+
+---
+
+## 📄 License
+
+This project is for educational purposes.
