@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -101,6 +102,7 @@ body {
   padding: 0 20px;
   position: relative;
 }
+
 #navbar li a {
   text-decoration: none;
   font-size: 16px;
@@ -141,7 +143,7 @@ body {
   height: 90vh;
   width: 100%;
   background-size: cover;
-  background-position: top ;
+  background-position: top;
   padding: 0 80px;
   display: flex;
   flex-direction: column;
@@ -190,31 +192,40 @@ body {
   pointer-events: none;
   transition: all 0.4s;
 }
+
 /* 🔥 FIX MAIN PRODUCT IMAGE */
 #MainImg {
   width: 100%;
-  height: 400px;        /* control size */
-  object-fit: contain;  /* prevents stretching */
+  height: 400px;
+  /* control size */
+  object-fit: contain;
+  /* prevents stretching */
   border-radius: 10px;
 }
+
 .small-img-col {
   flex-basis: 24%;
   cursor: pointer;
 }
+
 .small-img {
   width: 100%;
   height: 80px;
   object-fit: cover;
 }
+
 #prodetails {
   display: flex;
   gap: 40px;
   align-items: flex-start;
 }
+
 .single-pro-image {
   width: 40%;
-  max-width: 400px;   /* 🔥 LIMIT WIDTH */
+  max-width: 400px;
+  /* 🔥 LIMIT WIDTH */
 }
+
 .to-top.active {
   bottom: 32px;
   pointer-events: auto;
@@ -254,6 +265,7 @@ body {
 #feature .fe-box:hover {
   box-shadow: 10px 10px 54px rgba(70, 62, 221, 0.1);
 }
+
 #feature .fe-box img {
   width: 100%;
   margin-bottom: 10px;
@@ -277,7 +289,7 @@ body {
 }
 
 #feature .fe-box:nth-child(4) h6 {
-  background-color:  #7db0d3;
+  background-color: #7db0d3;
 }
 
 #feature .fe-box:nth-child(5) h6 {
@@ -326,8 +338,8 @@ body {
 
 #product1 .pro img {
   width: 100%;
-  height: 250px;          
-  object-fit: cover; 
+  height: 250px;
+  object-fit: cover;
   border-radius: 20px;
 }
 
@@ -411,6 +423,7 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 #sm-banner .banner-box {
   display: flex;
   flex-direction: column;
@@ -520,6 +533,7 @@ body {
 #newsletter p span {
   color: #ffbd27;
 }
+
 #newsletter .form {
   display: flex;
   width: 40%;
@@ -663,6 +677,7 @@ footer .copyright {
   display: flex;
   margin-top: 20px;
 }
+
 #prodetails .single-pro-details {
   width: 50%;
   padding-top: 30px;
@@ -675,6 +690,7 @@ footer .copyright {
 #prodetails .single-pro-details h2 {
   font-size: 20px;
 }
+
 #prodetails .single-pro-details select {
   display: block;
   padding: 5px 10px;
@@ -728,9 +744,11 @@ footer .copyright {
   display: flex;
   align-items: center;
 }
+
 #about-head div {
   padding-left: 40px;
 }
+
 #about-head img {
   width: 50%;
   height: auto;
@@ -809,6 +827,49 @@ footer .copyright {
 
 #form-details {
   width: 80%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: space-between;
+  /* 🔥 important */
+  align-items: flex-start;
+  gap: 40px;
+  /* 🔥 spacing */
+  padding: 40px;
+  border: 1px solid #e1e1e1;
+  border-radius: 20px;
+}
+
+#form-details form {
+  width: 60%;
+  /* balanced */
+}
+
+#form-details .people {
+  width: 35%;
+  /* side section */
+}
+
+/*  Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.6s linear infinite;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#form-details {
+  width: 80%;
   margin: 30px auto;
   display: flex;
   justify-content: space-evenly;
@@ -840,6 +901,7 @@ footer .copyright {
   background-color: #088178;
   color: #fff;
 }
+
 #form-details .people {
   /* border: 2px solid blue; */
   display: flex;
@@ -855,6 +917,7 @@ footer .copyright {
   /* border: 3px solid red; */
   flex: 1;
 }
+
 #form-details .people div:first-child,
 #form-details .people div:nth-child(2) {
   border-bottom: 1px solid #e1e1e1;
@@ -887,16 +950,19 @@ footer .copyright {
   margin: auto;
   /* border: 2px solid red; */
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
   /* border: 3px solid blue; */
 }
+
 .cart-info {
   display: flex;
   flex-wrap: wrap;
   /* border: 3px solid green; */
 }
+
 th {
   text-align: left;
   padding: 10px 5px;
@@ -905,21 +971,25 @@ th {
   font-weight: normal;
   /* border: 3px solid red; */
 }
+
 td {
   padding: 10px 5px;
   /* border: 2px solid black; */
 }
+
 td input {
   width: 50px;
   height: 30px;
   padding: 5px;
   /* padding: 8px 3px 8px 7px; */
 }
+
 td a {
   color: rgb(6, 85, 103);
   font-size: 12px;
   text-decoration: none;
 }
+
 td img {
   width: 120px;
   height: 120px;
@@ -927,23 +997,28 @@ td img {
   display: inline-block;
   margin-right: 10px;
 }
+
 .total-price {
   display: flex;
   justify-content: flex-end;
   /* border: 2px solid blue; */
 }
+
 .total-price table {
   border-top: 3px solid rgb(6, 85, 103);
   width: 100%;
   max-width: 400px;
   /* border: 2px solid red; */
 }
+
 td:last-child {
   text-align: right;
 }
+
 th:last-child {
   text-align: right;
 }
+
 .total-price tr:last-child {
   margin-top: 50px;
   /* border: 2px solid blue; */
@@ -962,6 +1037,7 @@ th:last-child {
   .section-p1 {
     padding: 40px 40px;
   }
+
   #navbar {
     display: flex;
     flex-direction: column;
@@ -1058,6 +1134,7 @@ th:last-child {
   #form-details {
     padding: 30px;
   }
+
   #form-details form {
     width: 50%;
   }
@@ -1091,30 +1168,39 @@ th:last-child {
     width: 155px;
     margin: 0 0 15px 0;
   }
+
   #feature {
     justify-content: space-around;
   }
+
   #product1 .pro {
     width: 100%;
   }
+
   #banner {
     height: 40vh;
   }
+
   #sm-banner .banner-box2 {
     margin-top: 20px;
   }
+
   #banner3 {
     padding: 0 20px;
   }
+
   #banner3 .banner-box {
     width: 100%;
   }
+
   #newsletter .form {
     width: 100%;
   }
+
   #newsletter {
     padding: 40px 20px;
   }
+
   footer .copyright {
     text-align: start;
   }
@@ -1125,17 +1211,19 @@ th:last-child {
     display: flex;
     flex-direction: column;
   }
+
   #prodetails .single-pro-image {
     width: 100%;
     margin-right: 0px;
   }
+
   #prodetails .single-pro-details {
     width: 100%;
     padding: 2em;
   }
 
 
-  
+
 
   /* about page  */
 
@@ -1161,6 +1249,7 @@ th:last-child {
     display: flex;
     flex-direction: column;
   }
+
   #contact-details .details {
     width: 100%;
     margin-bottom: 30px;
